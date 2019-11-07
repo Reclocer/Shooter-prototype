@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun1 : Gun
-{
-    private Vector3 _bulletStartPosition;
+{    
     public GameObject ParentObject; 
     public GameObject PrefabBullet;
     private GameObject _activeBullet;
@@ -28,18 +27,15 @@ public class Gun1 : Gun
         if (Input.GetMouseButtonDown(0))
         {            
             if (AmountAmmo >= 1 && Time.time > _timeForNextFire)
-            {
-                //_bulletStartPosition = transform.position.z + 4;
+            {                
                 _activeBullet = Instantiate(PrefabBullet, transform.position, Quaternion.identity);
                 _activeBullet.transform.forward = gameObject.transform.forward;
-                _activeBullet.transform.localScale = ParentObject.GetComponentInParent<Transform>().localScale/10;
-                Debug.Log(ParentObject.GetComponentInParent<Transform>().localScale);
-                AmountAmmo--;                
+                _activeBullet.transform.localScale = ParentObject.GetComponentInParent<Transform>().localScale/10;                
                 _timeForNextFire = Time.time + RateOfFire;
+                AmountAmmo--;
             }
         }
         #endregion
     }
-
     
 }

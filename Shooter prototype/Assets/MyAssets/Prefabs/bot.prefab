@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 088d03a3bb6bac546b7b50786ecffaab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,8 +215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmountAmmo: 0
+  ParentObject: {fileID: 0}
   PrefabBullet: {fileID: 2701356037140660180, guid: 250f7c51b1523da4090ae955654a03f8,
     type: 3}
+  RateOfFire: 2.1
 --- !u!1 &8369918382816217136
 GameObject:
   m_ObjectHideFlags: 0
