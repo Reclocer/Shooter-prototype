@@ -280,9 +280,9 @@ Canvas:
   m_GameObject: {fileID: 895368350}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 8369918382816217142}
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -492,7 +492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 60.19995, y: 0}
+  m_AnchoredPosition: {x: 60.200195, y: 0}
   m_SizeDelta: {x: -474.56, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2046085588
@@ -571,7 +571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -57.59, y: 0.0000076293945}
+  m_AnchoredPosition: {x: -57.589844, y: 0.0000076293945}
   m_SizeDelta: {x: -115.18, y: 93.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2089721874
@@ -645,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8369918381691919988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4570713, y: 1.264, z: 4.3118877}
+  m_LocalPosition: {x: 0, y: 1.264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8369918382816217141}
@@ -869,6 +869,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun1
       objectReference: {fileID: 0}
+    - target: {fileID: 4626535030590429525, guid: 4eda7e2d479273e43933ebb752eea33d,
+        type: 3}
+      propertyPath: ParentObject
+      value: 
+      objectReference: {fileID: 8369918382816217136}
     - target: {fileID: 4626535030590429524, guid: 4eda7e2d479273e43933ebb752eea33d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -924,11 +929,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4626535030590429525, guid: 4eda7e2d479273e43933ebb752eea33d,
-        type: 3}
-      propertyPath: ParentObject
-      value: 
-      objectReference: {fileID: 8369918382816217136}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eda7e2d479273e43933ebb752eea33d, type: 3}
 --- !u!4 &8369918382750385623 stripped

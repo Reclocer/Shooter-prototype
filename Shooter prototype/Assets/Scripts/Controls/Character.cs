@@ -11,9 +11,12 @@ public class Character : MonoBehaviour
     public GameObject GunN1 = null;
 
     [Header("Values")]
+    public RaycastHit Hit;
+    private Ray _ray;
     public float Health = 100;
     public float Power = 100;
     public int EnterDamage = 0;
+    public bool EnterDamageBool = false;
     public int ExitDamage = 0;
 
     public float _speed = 3;
@@ -21,6 +24,8 @@ public class Character : MonoBehaviour
     private float _rotate = 0;
     private float _minPower = 5;
     private float _mass = 80;
+
+    
     
 
     // damage values 
@@ -40,10 +45,18 @@ public class Character : MonoBehaviour
     void Start()
     {
         this.GetComponent<Rigidbody>().mass = _mass;
+        Hit = new RaycastHit();
     }
 
     void Update()
     {
+        _ray.origin = transform.position;
+        _ray.direction = transform.forward;
+        if (Physics.Raycast(_ray, out Hit))
+        {
+            Debug.Log(Hit.transform.name);
+        }
+
         #region Move commands       
 
         if (Input.GetKey(KeyCode.W) && Power > _minPower && _regenPower == false)
@@ -86,9 +99,24 @@ public class Character : MonoBehaviour
             _rotate = _rotateSpeed * Input.GetAxis("Mouse X");
             transform.Rotate(0, _rotate, 0);
         }
-        #endregion
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            GunN1.GetComponent<Gun1>().PressFire = true;
+            if (GunN1.GetComponent<Gun1>().BulletHit && Hit.transform.tag == "bot")            
+            {   
                 
+                Hit.transform.GetComponent<Bot1>().EnterDamage += GunN1.GetComponent<Gun1>().PrefabBullet.GetComponent<Bullet1>().Damage;
+                Hit.transform.GetComponent<Bot1>().EnterDamageBool = GunN1.GetComponent<Gun1>().BulletHit;
+                this.ExitDamage += GunN1.GetComponent<Gun1>().PrefabBullet.GetComponent<Bullet1>().Damage;
+            }
+        }
+        else
+        {
+            GunN1.GetComponent<Gun1>().PressFire = false;
+        }
+        #endregion
+        
         #region Decrement
         // Enter damage
         if (Input.GetKeyDown(KeyCode.O))
@@ -103,6 +131,17 @@ public class Character : MonoBehaviour
             {
                 //SceneManager.LoadScene("Main"); 
             }
+        }
+
+        if (EnterDamageBool)
+        {
+            Health -= EnterDamage;
+            if (Health < 1)
+            {
+                //SceneManager.LoadScene("Main");
+            }
+
+            EnterDamageBool = false;
         }
 
         // Change model scale and values
@@ -179,8 +218,7 @@ public class Character : MonoBehaviour
             }
         }
         #endregion
-
-        //GunN1.transform.localScale = this.transform.localScale;
+                
     }
 
     private void FixedUpdate()
@@ -216,6 +254,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Pick up amunition
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "ammo1")

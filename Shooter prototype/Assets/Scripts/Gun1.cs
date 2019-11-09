@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Gun1 : Gun
 {    
-    public GameObject ParentObject; 
+    public GameObject ParentObject;    
     public GameObject PrefabBullet;
+    public bool PressFire = false;
+    public bool BulletHit = false;
+
     private GameObject _activeBullet;
     public float RateOfFire = 2.1f; //seconds for one bullet
     private float _timeForNextFire;
     
     void Start()
-    {
-        ParentObject = GameObject.FindGameObjectWithTag("Player");
+    {        
+        ParentObject = this.transform.root.gameObject;
     }
 
     
@@ -24,7 +27,7 @@ public class Gun1 : Gun
         }
 
         #region Gun functions        
-        if (Input.GetMouseButtonDown(0))
+        if (PressFire)
         {            
             if (AmountAmmo >= 1 && Time.time > _timeForNextFire)
             {                
@@ -32,7 +35,12 @@ public class Gun1 : Gun
                 _activeBullet.transform.forward = gameObject.transform.forward;
                 _activeBullet.transform.localScale = ParentObject.GetComponentInParent<Transform>().localScale/10;                
                 _timeForNextFire = Time.time + RateOfFire;
+                BulletHit = true;
                 AmountAmmo--;
+            }
+            else
+            {
+                BulletHit = false;
             }
         }
         #endregion
